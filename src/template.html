@@ -1,0 +1,390 @@
+<title>Rotation — coffee, roasted to order</title>
+<style>
+  @font-face {
+    font-family: 'Zilla Slab';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(data:font/woff2;base64,__ZILLASLAB_700__) format('woff2');
+  }
+  @font-face {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(data:font/woff2;base64,__WORKSANS_400__) format('woff2');
+  }
+  @font-face {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(data:font/woff2;base64,__WORKSANS_600__) format('woff2');
+  }
+  @font-face {
+    font-family: 'IBM Plex Mono';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(data:font/woff2;base64,__PLEXMONO_500__) format('woff2');
+  }
+
+  :root {
+    --bg: #1b140f;
+    --bg-2: #150f0b;
+    --surface: #241b14;
+    --surface-2: #2e2219;
+    --ink: #f3ebdf;
+    --ink-muted: #bca98f;
+    --ink-faint: #95836f;
+    --sage: #a9b98c;
+    --sage-dim: #7c8a64;
+    --copper: #e08a4d;
+    --copper-deep: #bf6a30;
+    --line: rgba(243, 235, 223, 0.14);
+    --focus: #e6a468;
+
+    --font-display: 'Zilla Slab', Rockwell, 'Roboto Slab', ui-serif, Georgia, serif;
+    --font-body: 'Work Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  body {
+    font-family: var(--font-body);
+    background:
+      radial-gradient(ellipse 900px 600px at 82% 12%, rgba(169, 185, 140, 0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 8% 90%, rgba(224, 138, 77, 0.08), transparent 55%),
+      var(--bg);
+    min-height: 100vh;
+  }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 8vw, 6rem);
+  }
+
+  /* ---------- nav ---------- */
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: clamp(2.5rem, 8vw, 5rem);
+  }
+
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--ink-muted);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--ink);
+    border-color: var(--ink-muted);
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      color: var(--bg);
+      background: var(--copper);
+      padding: 0.55rem 1rem;
+      border-radius: 3px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    .nav-cta:hover { background: var(--copper-deep); transform: translateY(-1px); }
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  @media (max-width: 860px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: clamp(2.5rem, 10vw, 3.5rem);
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    color: var(--sage);
+    margin: 0 0 1.1rem;
+    text-transform: uppercase;
+  }
+
+  .headline {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.35rem, 5.2vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.35rem;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .subhead {
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    line-height: 1.6;
+    color: var(--ink-muted);
+    max-width: 34rem;
+    margin: 0 0 2.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--bg-2);
+    background: var(--copper);
+    padding: 0.9rem 1.6rem;
+    border-radius: 4px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .cta-primary:hover { background: var(--copper-deep); transform: translateY(-1px); }
+
+  .hero-fineprint {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- roast dial ---------- */
+
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    justify-self: center;
+  }
+
+  .roast-dial {
+    position: relative;
+    width: clamp(220px, 28vw, 300px);
+    aspect-ratio: 1 / 1;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(0,0,0,0.2);
+  }
+
+  .dial-svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+
+  .dial-track {
+    fill: none;
+    stroke: rgba(243, 235, 223, 0.08);
+    stroke-width: 10;
+  }
+
+  .dial-peak {
+    fill: none;
+    stroke: var(--sage);
+    stroke-width: 10;
+    stroke-linecap: round;
+    /* pathLength="100" on the element normalizes units to percent of
+       circumference: 0% dash, 21.43% gap (days 0-3), 42.86% dash
+       (days 3-9, the peak window), remainder gap */
+    stroke-dasharray: 0 21.43 42.86 100;
+  }
+
+  .dial-marker {
+    fill: var(--copper);
+    stroke: var(--bg-2);
+    stroke-width: 3;
+  }
+
+  .dial-center {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    text-align: center;
+  }
+
+  .dial-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  .dial-day {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-top: 0.15rem;
+  }
+
+  .dial-caption {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--sage);
+    letter-spacing: 0.02em;
+    margin-top: 0.25rem;
+  }
+
+  .dial-stamp {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    text-align: center;
+    margin: 0;
+  }
+
+  /* ---------- load-in motion ---------- */
+
+  .hero-copy > * ,
+  .hero-visual {
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .eyebrow { animation-delay: 0.02s; }
+  .headline { animation-delay: 0.08s; }
+  .subhead { animation-delay: 0.16s; }
+  .hero-actions { animation-delay: 0.24s; }
+  .hero-visual { animation-delay: 0.3s; }
+
+  .dial-peak, .dial-marker {
+    animation: draw 1s 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes draw {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-copy > *, .hero-visual, .dial-peak, .dial-marker {
+      animation: none !important;
+    }
+  }
+</style>
+
+<div class="page">
+  <header class="nav">
+    <div class="wordmark">ROTATION</div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#" class="nav-link">This week's roast</a>
+      <a href="#" class="nav-cta">Start your rotation</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Roasted to order &middot; shipped within 48 hours</p>
+      <h1 class="headline">Coffee that hasn't sat on a shelf all month.</h1>
+      <p class="subhead">
+        We roast twice a week and ship the same day. What lands on your
+        counter is still resting, not stale — timed to arrive right as
+        your last bag runs out.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="cta-primary">Start your rotation →</a>
+        <span class="hero-fineprint">From $19/bag &middot; pause or cancel anytime</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div
+        class="roast-dial"
+        role="img"
+        aria-label="Freshness dial: today is day 3, inside the day 3 to 9 peak flavor window out of a 14-day cycle"
+      >
+        <svg class="dial-svg" viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="dial-track" cx="100" cy="100" r="80" />
+          <circle class="dial-peak" cx="100" cy="100" r="80" pathLength="100" />
+          <!-- local (pre-rotation) coords for day 3, the marker for
+               "today": svg is rotated -90deg in CSS so children are
+               authored in the un-rotated frame -->
+          <circle class="dial-marker" cx="117.8" cy="178" r="6" />
+        </svg>
+        <div class="dial-center">
+          <span class="dial-label">Today's roast</span>
+          <span class="dial-day">Day 3</span>
+          <span class="dial-caption">peak window: day 3–9</span>
+        </div>
+      </div>
+      <p class="dial-stamp">Roasted 06.30.26 &middot; Lot #114 &middot; Huehuetenango, Guatemala</p>
+    </div>
+  </main>
+</div>
